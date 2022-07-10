@@ -1,0 +1,24 @@
+{
+  "name": "pern-stack-course",
+  "version": "1.0.0",
+  "description": "This project is a coding tutorial of the FreeCodeCamp.org Youtube channel: https://www.youtube.com/watch?v=J01rYl9T3BU",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ffjaervik/PERN-Stack-Course.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ffjaervik/PERN-Stack-Course/issues"
+  },
+  "homepage": "https://github.com/ffjaervik/PERN-Stack-Course#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
