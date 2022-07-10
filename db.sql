@@ -1,0 +1,4 @@
+-- for help     \?
+-- list database    \l
+-- Create database    CREATE DATABASE database_Name;
+-- Connect to database     \c database_Name;
