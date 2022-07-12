@@ -29,29 +29,39 @@ app.get("/api/v1/restaurants", async (req, res) => {
 });
 
 // GET RESTAURANT BY ID
-app.get("/api/v1/restaurants/:id", (req, res) => {
-    ("SELECT* FROM restaurants WHERE id = 1");
+app.get("/api/v1/restaurants/:id", async (req, res) => {
+    console.log(req.params.id);
+    try { 
+        const results = await db.query(
+            `SELECT * FROM restaurants WHERE id = $1`, [req.params.id]);
 
-
-
-    console.log(req.params);
-    res.status(200).json ({
-        status:"success",
-        data: {
-            restaurant: "mcdonalds"
+        res.status(200).json ({
+            status:"success",
+            data: {
+                restaurant: results.rows[0]
+            }
+        });
+        } catch(err){
+            console.log(err);
         }
-    });
 });
 
 //CREATE RESTAURANT
-app.post("/api/v1/restaurants", (req, res) => {
-    console.log(req.body);
-    res.status(201).json ({
-        status:"success",
-        data: {
-            restaurant: "mcdonalds"
-        }
-    });
+app.post("/api/v1/restaurants", async (req, res) => {
+    try{
+        const results = await db.query( `INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) RETURNING *`, [req.body.name, req.body.location, req.body.price_range]);
+        console.log(req.body);
+        res.status(201).json ({
+            status:"success",
+            data: {
+                restaurant: results.rows[0]
+            }
+        });
+
+    } catch(err){
+        console.log(err);
+    }
+
 });
 
 //UPDATE RESTAURANT
@@ -80,5 +90,3 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-
-console.log("hello");
